@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+<HEAD>
+
+	<script>
+	"use strict";window.IframeShim=(function(){var a=JSON.parse(decodeURIComponent(window.location.hash.substr(1))),d=a.namespace,b=a.window_origin,c=a.iframe_origin,g=a.debug;window.location.hash="#ready";function e(){if(!g){return}arguments[0]=":XDC_IFR: "+arguments[0];console.log.apply(console,arguments)}function f(i){var k=document.cookie.split(";"),j={};k.forEach(function(l){var m=l.trim().split("=");if(!m[0]){return}j[m[0]]=decodeURIComponent(m[1])});return j}window.addEventListener("message",function(j){e("incoming postMessage",j.origin,j.data);var i=j.origin||j.originalEvent.origin;if([b,c].indexOf(i)===-1){return}var k=null;try{k=JSON.parse(j.data)}catch(l){}if(typeof k!=="object"||(k instanceof Array)){return}if(!("msg_type" in k)||k.msg_type!=="xdsc_write"){return}if(!("namespace" in k)||k.namespace!==d){return}if(k.secure_only&&window.location.protocol!=="https:"){console.error("xDomainCookie - ERROR, secure_only flag set but page is not loaded over HTTPS:")}h()});function h(){var i={cookies:f(),msg_type:"xdsc_read",namespace:d};e("_send_xdomain_cookie_data_to_page",i);window.parent.postMessage(JSON.stringify(i),b)}h()})();
+	</script>
+</HEAD>
+</HTML>
