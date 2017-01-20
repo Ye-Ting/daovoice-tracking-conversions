@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>daovoice</title>
+</head>
+
+<body>
+		<h1>跨域获取 cookies 解决方案</h1>
+
+    <script src="./xdomain_cookie.js"></script>
+    <script>
+    var xdCookie = xDomainCookie("//site.com"); // 填写网站地址
+
+    xdCookie.get('marketing_referrer', function(val) {
+        console.log("====== 'marketing_referrer'", val);
+    })
+    xdCookie.get('utm_source', function(val) {
+        console.log("====== 'utm_source'", val);
+    })
+    xdCookie.get('utm_medium', function(val) {
+        console.log("====== 'utm_medium'", val);
+    })
+    xdCookie.get('utm_term', function(val) {
+        console.log("====== 'utm_term'", val);
+    })
+    xdCookie.get('utm_medium', function(val) {
+        console.log("====== 'utm_medium'", val);
+    })
+    xdCookie.get('utm_content', function(val) {
+        console.log("====== 'utm_content'", val);
+    })
+    xdCookie.get('utm_campaign', function(val) {
+        console.log("====== 'utm_campaign'", val);
+    })
+
+    </script>
+</body>
+
+</html>

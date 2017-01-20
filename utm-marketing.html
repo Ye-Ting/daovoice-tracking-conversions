@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>DaoVoice tracking UTM Params</title>
     <script src="./utm-tracking-cookies.js"></script>
     <!-- <script src="https://dashboard-cdn.daovoice.io/utm-tracking-cookies.js"></script> -->
-    
     <script>
     /** DaoVoice */
     (function(i, s, o, g, r, a, m) {
@@ -22,6 +22,16 @@
         a.charset = "utf-8";
         m.parentNode.insertBefore(a, m);
 
+        function _cookie(cookie_name) {
+            var name = cookie_name + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i].trim();
+                if (c.indexOf(name) === 0) return decodeURIComponent(c.substring(name.length, c.length));
+            }
+            return undefined;
+        }
+
         Object.defineProperty(i, 'daovoice', {
             configurable: true,
             enumerable: true,
@@ -29,12 +39,12 @@
                 function c(x, y) {
                     y = y ? y : {};
 
-                    y['marketing_referrer'] = Cookies.get('marketing_referrer'),
-                        y['utm_source'] = Cookies.get('utm_source'),
-                        y['utm_medium'] = Cookies.get('utm_medium'),
-                        y['utm_term'] = Cookies.get('utm_term'),
-                        y['utm_content'] = Cookies.get('utm_content'),
-                        y['utm_campaign'] = Cookies.get('utm_campaign');
+                    y['marketing_referrer'] = _cookie('marketing_referrer'),
+                    y['utm_source'] = _cookie('utm_source'),
+                    y['utm_medium'] = _cookie('utm_medium'),
+                    y['utm_term'] = _cookie('utm_term'),
+                    y['utm_content'] = _cookie('utm_content'),
+                    y['utm_campaign'] = _cookie('utm_campaign');
 
                     i[r].apply(this, [x, y]);
                 }
