@@ -36,17 +36,20 @@
             configurable: true,
             enumerable: true,
             get: function() {
-                function c(x, y) {
-                    y = y ? y : {};
+                function c() {
+                  var args = arguments;
+                  var m = args[0];
+                  if (m === 'init' || m === 'update') {
+                    args[1] = args[1] ? args[1] : {};
+                    args[1]['marketing_referrer'] = store.get('marketing_referrer');
+                    args[1]['utm_source'] = store.get('utm_source');
+                    args[1]['utm_medium'] = store.get('utm_medium');
+                    args[1]['utm_term'] = store.get('utm_term');
+                    args[1]['utm_content'] = store.get('utm_content');
+                    args[1]['utm_campaign'] = store.get('utm_campaign');
+                  }
 
-                    y['marketing_referrer'] = _cookie('marketing_referrer'),
-                    y['utm_source'] = _cookie('utm_source'),
-                    y['utm_medium'] = _cookie('utm_medium'),
-                    y['utm_term'] = _cookie('utm_term'),
-                    y['utm_content'] = _cookie('utm_content'),
-                    y['utm_campaign'] = _cookie('utm_campaign');
-
-                    i[r].apply(this, [x, y]);
+                  i[r].apply(this, args);
                 }
 
                 c.q = i[r].q;
