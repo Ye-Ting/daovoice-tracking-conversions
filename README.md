@@ -1,9 +1,9 @@
 # DaoVoice Tracking Conversions
 
-本代码基于 (DaoVoice)[https://www.daovoice.io?utm_source=yeting&utm_medium=github&utm_campaign=tracking-conversions] 完成一个场景，
+本代码基于 [DaoVoice](https://www.daovoice.io?utm_source=yeting&utm_medium=github&utm_campaign=tracking-conversions) 完成一个场景，
 如何跟踪用户市场活动的转化效果。
 
-(DaoVoice)[https://www.daovoice.io?utm_source=yeting&utm_medium=github&utm_campaign=tracking-conversions] 是你与客户进行沟通的绝佳工具
+[DaoVoice](https://www.daovoice.io?utm_source=yeting&utm_medium=github&utm_campaign=tracking-conversions) 是你与客户进行沟通的绝佳工具
 
 ## 为什么要追踪市场活动转化效果?
 
