@@ -44,8 +44,9 @@ function getRootDomain(url) {
 }
 
 Cookies.defaults.expires = 180;
-if(getRootDomain(document.domain)) {
- Cookies.defaults.domain = getRootDomain(document.domain);
+var $marketing_domain = getRootDomain(document.domain);
+if($marketing_domain) {
+ Cookies.defaults.domain = $marketing_domain;
 }
 
 function getParameterByName(name) {
@@ -55,12 +56,21 @@ function getParameterByName(name) {
   return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
-var referrer = document.referrer == "" ? "Direct" : document.referrer;
+// 没有 Referrer 为 Direct
+// 相同根域名 Referrer 为 Direct
+// 不同根域名 Referrer 为 document.referrer
+var $marketing_referrer;
+if(document.referrer == "" || 
+  document.referrer.indexOf($marketing_domain)) {
+  $marketing_referrer = "Direct"
+} else { 
+  $marketing_referrer = document.referrer;
+}
 
 if (Cookies.get('marketing_referrer') == null || 
   Cookies.get('marketing_referrer') == "" || 
   Cookies.get('marketing_referrer') == "Direct") { 
-  Cookies.set('marketing_referrer', referrer); 
+  Cookies.set('marketing_referrer', $marketing_referrer); 
 }
 if (getParameterByName('utm_source') !== "") { 
   Cookies.set('utm_source', getParameterByName('utm_source')); 
