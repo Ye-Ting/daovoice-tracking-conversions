@@ -61,7 +61,7 @@ function getParameterByName(name) {
 // 不同根域名 Referrer 为 document.referrer
 var $marketing_referrer;
 if(document.referrer == "" || 
-  document.referrer.indexOf($marketing_domain)) {
+  document.referrer.indexOf($marketing_domain) > 0) {
   $marketing_referrer = "Direct"
 } else { 
   $marketing_referrer = document.referrer;
