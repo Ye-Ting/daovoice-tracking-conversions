@@ -21,6 +21,17 @@
             }
             return undefined;
         }
+        function getParameterByName(name) {
+          name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+          var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+              results = regex.exec(location.search);
+          return results === undefined ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+        
+        function _get(name) {
+            return getParameterByName(name) && _cookie(name)
+        }
+
         Object.defineProperty(i, $r, {
             configurable: true,
             enumerable: true,
@@ -30,12 +41,12 @@
                   var m = args[0];
                   if (m === 'init' || m === 'update') {
                     args[1] = args[1] ? args[1] : {};
-                    args[1]['marketing_referrer'] = _cookie('marketing_referrer');
-                    args[1]['utm_source'] = _cookie('utm_source');
-                    args[1]['utm_medium'] = _cookie('utm_medium');
-                    args[1]['utm_term'] = _cookie('utm_term');
-                    args[1]['utm_content'] = _cookie('utm_content');
-                    args[1]['utm_campaign'] = _cookie('utm_campaign');
+                    args[1]['marketing_referrer'] = _get('marketing_referrer');
+                    args[1]['utm_source'] = _get('utm_source');
+                    args[1]['utm_medium'] = _get('utm_medium');
+                    args[1]['utm_term'] = _get('utm_term');
+                    args[1]['utm_content'] = _get('utm_content');
+                    args[1]['utm_campaign'] = _get('utm_campaign');
                   }
 
                   i[r].apply(this, args);
